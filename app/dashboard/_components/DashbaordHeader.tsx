@@ -20,17 +20,21 @@ function DashbaordHeader() {
         visible: { opacity: 1, x: 0 },
       }}
     >
-      <div className="p-7 bg-primary rounded-lg  text-white flex justify-between items-center">
-        <h2 className="font-bold text-4xl gradient-title">My Stories</h2>
-        <div className="flex gap-3 items-center">
-          <Image
-            src={"/coin.png"}
-            alt="Coin"
-            height={60}
-            width={60}
-            className="animate-pulse"
-          />
-          <span className="text-2xl">{userDetail?.credit} Credits Left</span>
+      <div className="p-7 bg-primary rounded-lg text-white flex flex-col md:flex-row justify-between items-center">
+        <h2 className="font-bold text-4xl gradient-title mb-4 md:mb-0">
+          My Stories
+        </h2>
+        <div className="flex flex-col md:flex-row gap-3 items-center">
+          <div className="flex items-center mb-4 md:mb-0">
+            <Image
+              src={"/coin.png"}
+              alt="Coin"
+              height={60}
+              width={60}
+              className="animate-pulse"
+            />
+            <span className="text-2xl">{userDetail?.credit} Credits Left</span>
+          </div>
           <Link href={"/buy-credits"}>
             <Button color="secondary" className="gradient-background2">
               Buy More Credits

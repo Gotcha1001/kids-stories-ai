@@ -1,22 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import rawBody from "raw-body";
 import { db } from "@/config/db";
 import { Users } from "@/config/schema";
 import { eq } from "drizzle-orm";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
-
-  const buf = await rawBody(req);
+export async function POST(req: NextRequest) {
+  const buf = await rawBody(req.body);
   const rawBodyStr = buf.toString("utf8");
   const pfData = Object.fromEntries(new URLSearchParams(rawBodyStr));
 
-  // Log the received data
   console.log("Received PayFast notification:", pfData);
 
   if (pfData.payment_status === "COMPLETE") {
@@ -40,12 +32,15 @@ export default async function handler(
         console.log(`Credits updated for user ${userEmail}: +${creditsToAdd}`);
       }
 
-      return res.status(200).send("OK");
+      return NextResponse.json({ message: "Credits updated successfully" });
     } catch (error) {
       console.error("Error updating credits:", error);
-      return res.status(500).json({ message: "Error updating credits" });
+      return NextResponse.json(
+        { message: "Error updating credits" },
+        { status: 500 }
+      );
     }
   }
 
-  return res.status(200).send("OK");
+  return NextResponse.json({ message: "Notification received" });
 }

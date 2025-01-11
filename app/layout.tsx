@@ -1,16 +1,13 @@
+// app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { Merriweather } from "next/font/google";
+import Provider from "./provider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { shadesOfPurple } from "@clerk/themes";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const MyAppFont = Merriweather({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,12 +20,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        baseTheme: shadesOfPurple,
+        variables: {
+          colorPrimary: "#3b82f6",
+          colorBackground: "#000",
+          colorInputBackground: "#2D3748",
+          colorInputText: "#F3F4F6",
+        },
+        elements: {
+          formButtonPrimary: "bg-indigo-800 hover:bg-indigo-900 text-white",
+          card: "gradient-background2",
+          headerTitle: "text-indigo-800",
+          headerSubtitle: "text-purple-700",
+        },
+      }}
+    >
+      <html lang="en">
+        <body className={MyAppFont.className}>
+          <Provider>{children}</Provider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

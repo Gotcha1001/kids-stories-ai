@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #fafafa;
     --foreground: #ededed;
   }
 }
@@ -18,4 +18,447 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.gradient-title {
+  @apply font-extrabold 
+    bg-gradient-to-br 
+    from-teal-400
+    via-purple-200 
+    to-blue-950 
+    bg-clip-text 
+    tracking-tighter 
+    text-transparent 
+    pr-2;
+
+  background-size: 400% 400%; /* Increased size for smoother gradient */
+  animation: gradient-shift 4s ease infinite; /* Slower animation to see the gradient shift */
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.dynamic-bg {
+  background-image: url("/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: shiftBackground 90s linear infinite,
+    zoomBackground 20s ease-in-out infinite;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  inset: 0; /* This sets top, right, bottom, left all to 0 */
+  z-index: 0;
+  overflow: hidden; /* Prevent any potential overflow */
+}
+
+@keyframes shiftBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes zoomBackground {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Animated background class */
+/* Animated background class */
+.animated-bg {
+  background-image: url("/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed; /* Keeps the background fixed during scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+
+  animation: shiftBackground 90s linear infinite,
+    zoomBackground 20s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .animated-bg {
+    background-size: 110% auto;
+    background-position: 0% 50%;
+    animation: shiftBackground 50s linear infinite,
+      zoomBackground 20s ease-in-out infinite;
+  }
+}
+
+/* Horizontal movement */
+@keyframes shiftBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Zoom in and out effect */
+@keyframes zoomBackground {
+  0%,
+  100% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.05); /* Slight zoom to avoid distortion */
+  }
+}
+
+.horizontal-rotate {
+  animation: horizontalRotate 6s linear infinite;
+}
+
+@keyframes horizontalRotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.horizontal-spin {
+  animation: horizontalSpin 6s linear infinite;
+}
+
+@keyframes horizontalSpin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.zoom {
+  animation: zoom 1.5s ease infinite;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Resources.css Styles */
+@keyframes rotate-y {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(180deg);
+  }
+}
+
+/* Additional Styles */
+.carousel {
+  position: relative;
+}
+
+.carousel .carousel-item {
+  height: 400px; /* Set a fixed height for the carousel items */
+}
+
+.carousel .carousel-item img {
+  height: 100%;
+  object-fit: cover; /* Ensure images cover the carousel item area */
+}
+
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-indicators {
+  display: none; /* Hide left/right controls and indicators */
+}
+
+/* Extras */
+
+/* Extras */
+.gradient-background1 {
+  background: linear-gradient(300deg, #f7f3f3, #1d0e32, #78087c);
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-background2 {
+  background: linear-gradient(300deg, #000000, #000000, #efe8e8);
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Nature Green Gradient Background */
+.gradient-background3 {
+  background: linear-gradient(300deg, #a8d08d, #95ee75, #4ce803, #030800);
+  background-size: 180% 180%;
+  animation: nature-gradient-animation 6s ease infinite;
+}
+
+@keyframes nature-gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Sunset Theme Gradient Background */
+.gradient-background4 {
+  background: linear-gradient(300deg, #f60505, #f1d70c, #d7820b, #f4eff3);
+  background-size: 180% 180%;
+  animation: sunset-gradient-animation 6s ease infinite;
+}
+
+@keyframes sunset-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-background5 {
+  background: linear-gradient(300deg, #1c606e, #0077b6, #03031a);
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-background6 {
+  background: linear-gradient(300deg, #04f30c, #5491b7, #20b027);
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hue-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.hue-rotate {
+  animation: hue-rotate 1s linear infinite; /* Adjust duration and timing as needed */
+}
+/* 
+  .gradient-background7 {
+    background: linear-gradient(
+      135deg,
+      hsl(0, 100%, 50%),
+      hsl(30, 100%, 50%),
+      hsl(60, 100%, 50%),
+      hsl(90, 100%, 50%),
+      hsl(120, 100%, 50%),
+      hsl(150, 100%, 50%),
+      hsl(180, 100%, 50%),
+      hsl(210, 100%, 50%),
+      hsl(240, 100%, 50%),
+      hsl(270, 100%, 50%),
+      hsl(300, 100%, 50%),
+      hsl(330, 100%, 50%),
+      hsl(360, 100%, 50%)
+    );
+    background-size: 200% 200%;
+    animation: rainbow-shift 8s linear infinite;
+  
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2) inset;
+  }
+  
+  @keyframes rainbow-shift {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
+  }
+  */
+
+.gradient-background7 {
+  background: conic-gradient(
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  background-size: 300% 300%;
+  animation: gradient-animation 8s linear infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 0%; /* Top left */
+  }
+  25% {
+    background-position: 100% 0%; /* Top right */
+  }
+  50% {
+    background-position: 100% 100%; /* Bottom right */
+  }
+  75% {
+    background-position: 0% 100%; /* Bottom left */
+  }
+  100% {
+    background-position: 0% 0%; /* Back to top left */
+  }
+}
+
+.gradient-background9 {
+  background: linear-gradient(
+    300deg,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.9),
+    rgba(54, 2, 55, 0.3)
+  );
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+
+.gradient-background10 {
+  background: linear-gradient(
+    300deg,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.9),
+    rgba(11, 2, 59, 0.2)
+  );
+  background-size: 180% 180%;
+  animation: gradient-animation 6s ease infinite;
+}
+.chapter-style {
+  position: relative;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  font-family: serif;
+  background: linear-gradient(to bottom right, #ffebcd, #fff5e6, #ffebcd);
+  box-shadow: inset 0 0 30px rgba(139, 69, 19, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.chapter-style::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+")
+    repeat;
+  opacity: 0.15;
+  border-radius: 0.5rem;
+}
+
+.chapter-style::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent,
+    rgba(139, 69, 19, 0.07),
+    rgba(139, 69, 19, 0.1)
+  );
+  border-radius: 0.5rem;
 }

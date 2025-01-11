@@ -120,7 +120,7 @@ function ViewStory({ params }: any) {
               onFlip={handlePageFlip}
               ref={bookRef}
             >
-              <div className="bg-slate-200 border h-full rounded-lg">
+              <div className="bg-slate-200 border h-full rounded-lg  ">
                 <BookCoverPage
                   imageUrl={coverImage}
                   width={bookDimensions.width}

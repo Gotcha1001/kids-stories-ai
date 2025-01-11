@@ -5,17 +5,24 @@ import { Users } from "@/config/schema";
 import { eq } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
-  const buf = await rawBody(req.body);
-  const rawBodyStr = buf.toString("utf8");
-  const pfData = Object.fromEntries(new URLSearchParams(rawBodyStr));
+  if (!req.body) {
+    return NextResponse.json(
+      { error: "No request body provided" },
+      { status: 400 }
+    );
+  }
 
-  console.log("Received PayFast notification:", pfData);
+  try {
+    const rawBodyStr = await req.text(); // Retrieve raw body as a string
+    const pfData = Object.fromEntries(new URLSearchParams(rawBodyStr));
 
-  if (pfData.payment_status === "COMPLETE") {
-    const userEmail = pfData.custom_str1;
-    const creditsToAdd = parseInt(pfData.custom_int1);
+    // Log the received data
+    console.log("Received PayFast notification:", pfData);
 
-    try {
+    if (pfData.payment_status === "COMPLETE") {
+      const userEmail = pfData.custom_str1;
+      const creditsToAdd = parseInt(pfData.custom_int1);
+
       const user = await db
         .select()
         .from(Users)
@@ -25,22 +32,20 @@ export async function POST(req: NextRequest) {
         const currentCredit = user[0].credit ?? 0;
         await db
           .update(Users)
-          .set({
-            credit: currentCredit + creditsToAdd,
-          })
+          .set({ credit: currentCredit + creditsToAdd })
           .where(eq(Users.userEmail, userEmail));
         console.log(`Credits updated for user ${userEmail}: +${creditsToAdd}`);
       }
 
       return NextResponse.json({ message: "Credits updated successfully" });
-    } catch (error) {
-      console.error("Error updating credits:", error);
-      return NextResponse.json(
-        { message: "Error updating credits" },
-        { status: 500 }
-      );
     }
-  }
 
-  return NextResponse.json({ message: "Notification received" });
+    return NextResponse.json({ message: "Notification received" });
+  } catch (error) {
+    console.error("Error processing PayFast notification:", error);
+    return NextResponse.json(
+      { error: "Error processing request" },
+      { status: 500 }
+    );
+  }
 }

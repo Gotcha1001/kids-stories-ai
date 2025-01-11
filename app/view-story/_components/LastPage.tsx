@@ -108,14 +108,14 @@ const LastPage: React.FC = () => {
         <div className="flex flex-col items-center gap-6">
           {/* Share and Copy Buttons */}
           <div className="flex gap-4">
-            <Button
+            {/* <Button
               size="lg"
               className="bg-white text-[#3a0a00] hover:bg-opacity-90 transition duration-300 transform hover:scale-105"
               onClick={copyToClipboard}
             >
               <FaCopy className="mr-2" />
               {copySuccess ? "Copied!" : "Copy Link"}
-            </Button>
+            </Button> */}
             {typeof navigator !== "undefined" && navigator.share && (
               <Button
                 size="lg"

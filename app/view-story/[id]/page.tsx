@@ -116,7 +116,7 @@ function ViewStory({ params }: any) {
               maxHeight={bookDimensions.height}
               drawShadow={true}
               flippingTime={1000}
-              useMouseEvents={true}
+              useMouseEvents={false}
               onFlip={handlePageFlip}
               ref={bookRef}
             >

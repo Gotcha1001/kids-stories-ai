@@ -36,11 +36,11 @@ function StoryItemCard({ story }: StoryItemType) {
     <Link href={"/view-story/" + story?.storyId}>
       <Card
         isFooterBlurred
-        className="w-full h-[300px] col-span-12 sm:col-span-5 hover:scale-105 transition-all cursor-pointer"
+        className="w-full h-[300px] col-span-12 sm:col-span-5 hover:scale-105 transition-all cursor-pointer gradient-background2"
       >
         <Image
           alt="Card example background"
-          className="z-0 w-full h-full scale-125 -translate-y-6 object-contain"
+          className="z-0 w-full h-full object-contain"
           src={story?.coverImage}
           width={500}
           height={500}

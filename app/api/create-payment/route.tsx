@@ -45,7 +45,13 @@ export const POST = async (req: NextRequest) => {
     }
   }
 
-  const paymentUrl = `https://www.payfast.co.za/eng/process?${queryParams.toString()}`;
+  const basePaymentUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://www.payfast.co.za/eng/process"
+      : "https://sandbox.payfast.co.za/eng/process";
+
+  const paymentUrl = `${basePaymentUrl}?${queryParams.toString()}`;
+
   return NextResponse.json({ url: paymentUrl }); // Corrected response
 };
 

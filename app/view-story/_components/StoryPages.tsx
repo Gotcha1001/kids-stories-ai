@@ -1,5 +1,5 @@
 import { MdPlayCircle } from "react-icons/md";
-import LastPage from "./LastPage";
+
 
 function StoryPages({ storyChapters }: { storyChapters: any }) {
   const playSpeech = (text: string) => {

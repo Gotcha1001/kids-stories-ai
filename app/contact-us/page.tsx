@@ -102,7 +102,7 @@ export default function ContactUs() {
               className="absolute inset-0"
             >
               <img
-                src="https://img.freepik.com/free-photo/high-tech-portrait-young-girl-with-futuristic-style_23-2151133545.jpg?t=st=1736624403~exp=1736628003~hmac=e2c12d19c44c4e835c1d9a1913d90279d84eeb75c283a9beee02d8b39cfa01b8&w=2000"
+                src="https://images.pexels.com/photos/7414101/pexels-photo-7414101.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Contact"
                 className="w-full h-full object-cover rounded-2xl"
               />
